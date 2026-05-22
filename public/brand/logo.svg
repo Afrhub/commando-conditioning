@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Commando Conditioning logo">
+  <title>Commando Conditioning</title>
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#000" stroke-width="20"/>
+  <!-- Plate carrier silhouette -->
+  <path d="M180 130 h60 v55 h32 v-55 h60 v240 h-152 z M180 305 h152 v65 h-152 z" fill="#000"/>
+  <!-- Wordmark inside -->
+  <g font-family="Impact, Oswald, Stencil Std, Arial Black, sans-serif" font-weight="900" fill="#fff" text-anchor="middle" letter-spacing="2">
+    <text x="256" y="240" font-size="34">COMM</text>
+    <text x="290" y="240" font-size="34" text-anchor="start" dx="40">NDO</text>
+    <!-- Replace the gap with a dagger A -->
+    <g transform="translate(256,222)">
+      <path d="M0 -22 L-7 14 L7 14 Z" fill="#fff"/>
+      <rect x="-2" y="14" width="4" height="14" fill="#fff"/>
+    </g>
+    <text x="256" y="278" font-size="30">CONDI</text>
+    <text x="286" y="278" font-size="30" text-anchor="start" dx="44">IONING</text>
+    <!-- Dagger T -->
+    <g transform="translate(256,260)">
+      <rect x="-10" y="0" width="20" height="4" fill="#fff"/>
+      <path d="M-6 4 L0 18 L6 4 Z" fill="#fff"/>
+      <rect x="-1" y="18" width="2" height="10" fill="#fff"/>
+    </g>
+  </g>
+</svg>
