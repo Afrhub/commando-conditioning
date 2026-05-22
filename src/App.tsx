@@ -36,7 +36,7 @@ export function App() {
         onReset={onReset}
         hasProgramme={!!state.programme}
       />
-      <main className="flex-1 max-w-3xl w-full mx-auto px-5 sm:px-6">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-5 sm:px-7">
         {view.kind === "intake" && (
           <Intake
             initial={state.intake}

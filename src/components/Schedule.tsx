@@ -35,7 +35,7 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
         </div>
 
         {/* Hero stat row */}
-        <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-12">
           <HeroStat label="Sessions" current={doneDays} total={totalDays} />
           <HeroStat label="Progress" current={pct} total={100} suffix="%" />
           <HeroStat label="Weeks left" current={weeksRemaining(programme, completed)} total={programme.weeks} />
@@ -54,7 +54,7 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
         </div>
       </header>
 
-      <div className="stagger space-y-10">
+      <div className="stagger space-y-12">
         {weeks.map((days, idx) => (
           <WeekRow
             key={idx}
@@ -81,13 +81,13 @@ function weeksRemaining(programme: Programme, completed: Record<string, boolean>
 
 function HeroStat({ label, current, total, suffix }: { label: string; current: number; total: number; suffix?: string }) {
   return (
-    <div className="surface px-5 py-6 relative overflow-hidden">
-      <div className="eyebrow mb-3">{label}</div>
+    <div className="surface px-7 py-8 sm:py-10 relative overflow-hidden">
+      <div className="eyebrow mb-4">{label}</div>
       <div className="flex items-baseline gap-2 relative z-10">
-        <span className="stat-num tnum text-[clamp(2.25rem,6vw,3.5rem)]">{current}{suffix ?? ""}</span>
+        <span className="stat-num tnum text-[clamp(2.75rem,7vw,4.25rem)]">{current}{suffix ?? ""}</span>
         <span className="text-[var(--color-text-mute)] text-sm tnum">/ {total}{suffix ?? ""}</span>
       </div>
-      <span className="bg-num" aria-hidden>{total}</span>
+      <span className="bg-num" aria-hidden style={{ fontSize: "7rem", right: "0.25rem", bottom: "-1.25rem" }}>{total}</span>
     </div>
   );
 }
@@ -113,7 +113,7 @@ function WeekRow({
         </div>
         {allDone && <div className="eyebrow" style={{ color: "var(--color-rm-green-hi)" }}>Complete</div>}
       </div>
-      <div className="grid grid-cols-7 gap-2 sm:gap-2.5">
+      <div className="grid grid-cols-7 gap-2.5 sm:gap-3">
         {days.map(day => (
           <DayCell
             key={day.dayIdx}
@@ -131,7 +131,7 @@ function DayCell({ day, done, onClick }: { day: Day; done: boolean; onClick: () 
   const isRest = day.sessions.length === 0;
   const isTest = day.isTestDay;
 
-  const cls = ["tile", "aspect-square", "p-3", "flex", "flex-col", "justify-between"];
+  const cls = ["tile", "aspect-[1/1.15]", "p-3", "sm:p-4", "flex", "flex-col", "justify-between"];
   if (isRest) cls.push("tile-rest");
   else cls.push("tile-interactive");
   if (done) cls.push("tile-done");

@@ -77,9 +77,9 @@ export function Session({ day, completed, onToggleComplete, onBack }: Props) {
 
 function Item({ item }: { item: SessionItem }) {
   return (
-    <div className="tile p-6">
-      <div className="flex items-baseline justify-between gap-4 mb-5">
-        <h2 className="text-[1.375rem] font-semibold tracking-tight">{item.title}</h2>
+    <div className="tile p-7 sm:p-9">
+      <div className="flex items-baseline justify-between gap-4 mb-6">
+        <h2 className="text-[1.5rem] sm:text-[1.75rem] font-bold tracking-[-0.025em] leading-tight">{item.title}</h2>
         <span className="eyebrow tnum shrink-0">{item.durationMin} min</span>
       </div>
       <div>
@@ -132,11 +132,11 @@ function SetTile({ idx, reps }: { idx: number; reps: number }) {
         "tile tile-interactive",
         done ? "tile-done" : "",
         popping ? "set-pop" : "",
-        "py-5 px-4 text-left",
+        "py-7 px-5 text-left",
       ].join(" ")}
     >
-      <div className="eyebrow mb-3" style={{ fontSize: 10 }}>Set {idx}</div>
-      <div className="stat-num tnum text-[2rem]">{reps}</div>
+      <div className="eyebrow mb-4" style={{ fontSize: 10 }}>Set {idx}</div>
+      <div className="stat-num tnum text-[2.5rem] sm:text-[2.75rem]">{reps}</div>
     </button>
   );
 }
