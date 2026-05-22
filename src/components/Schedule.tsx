@@ -73,7 +73,7 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
             }}
           />
           <div className="absolute right-0 top-0 -translate-y-full font-mono text-[10px] uppercase tracking-widest mb-1" style={{ color: "var(--color-text-mute)" }}>
-            <span style={{ color: "var(--color-rm-brown-hi)" }}>{pct}</span>% logged
+            <span style={{ color: "var(--color-rm-gold)" }}>{pct}</span>% logged
           </div>
         </div>
       </header>
@@ -225,7 +225,17 @@ function DayCell({ day, done, onClick }: { day: Day; done: boolean; onClick: () 
         ) : (
           <div className="flex flex-wrap gap-x-1 gap-y-0.5 font-mono">
             {day.sessions.slice(0, 4).map((s, i) => (
-              <span key={i} className="text-[10px] font-bold tracking-wider" style={{ color: "var(--color-text-dim)" }}>
+              <span
+                key={i}
+                className="text-[10px] font-bold tracking-wider"
+                style={{
+                  color: s.discipline === "swim"
+                    ? "var(--color-rm-blue-hi)"
+                    : s.discipline === "run-liss" || s.discipline === "run-hiit"
+                      ? "var(--color-rm-gold)"
+                      : "var(--color-text-dim)",
+                }}
+              >
                 {disciplineGlyph(s.discipline)}
               </span>
             ))}

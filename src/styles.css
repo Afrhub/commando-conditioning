@@ -8,63 +8,78 @@
    ════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Surfaces (warm brown-tinted near-black) ── */
-  --color-bg: oklch(0.13 0.012 70);
-  --color-bg2: oklch(0.16 0.013 65);
-  --color-bg3: oklch(0.18 0.014 65);
-  --color-surface: oklch(0.19 0.014 65);
-  --color-surface-hi: oklch(0.23 0.016 65);
-  --color-glass: oklch(1 0 0 / 0.028);
-  --color-glass-hi: oklch(1 0 0 / 0.05);
-  --color-border: oklch(1 0 0 / 0.085);
-  --color-border-bold: oklch(1 0 0 / 0.16);
-  --color-hairline: oklch(1 0 0 / 0.09);
-
-  /* ── Text (parade white) ── */
-  --color-text: oklch(0.97 0.005 85);
-  --color-text-dim: oklch(0.74 0.008 75);
-  --color-text-mute: oklch(0.50 0.010 70);
-
   /* ──────────────────────────────────────────────
-     ROYAL MARINES OFFICIAL SCHEME — green/white/brown/red
+     ROYAL MARINES CAP-BADGE PALETTE — pulled from heraldry
+     Olive field · RM gold · scroll red · globe blue · cream white · laurel deep-green
      ────────────────────────────────────────────── */
 
-  /* Commando green — beret + cap badge */
-  --color-rm-green: oklch(0.40 0.10 148);
-  --color-rm-green-hi: oklch(0.55 0.13 148);
-  --color-rm-green-soft: oklch(0.40 0.10 148 / 0.12);
-  --color-accent: oklch(0.55 0.13 148);
-  --color-accent-hi: oklch(0.65 0.14 148);
-  --color-accent-soft: oklch(0.55 0.13 148 / 0.12);
-  --color-accent-ink: oklch(0.98 0.003 85);
+  /* Background ladder — olive military green (beret cloth field) */
+  --color-bg: oklch(0.22 0.045 130);
+  --color-bg2: oklch(0.26 0.050 130);
+  --color-bg3: oklch(0.30 0.054 130);
+  --color-surface: oklch(0.27 0.052 130);
+  --color-surface-hi: oklch(0.32 0.058 130);
 
-  /* Parade white — facing edges, gloves, belt webbing */
-  --color-rm-white: oklch(0.95 0.008 85);
-  --color-rm-white-hi: oklch(0.99 0.004 85);
-  --color-rm-white-soft: oklch(0.95 0.008 85 / 0.10);
+  --color-glass: oklch(1 0 0 / 0.04);
+  --color-glass-hi: oklch(1 0 0 / 0.07);
+  --color-border: oklch(1 0 0 / 0.10);
+  --color-border-bold: oklch(1 0 0 / 0.20);
+  --color-hairline: oklch(1 0 0 / 0.12);
 
-  /* Commando brown (Lovat / combat khaki) — kit, leather, webbing */
-  --color-rm-brown: oklch(0.48 0.07 65);
-  --color-rm-brown-hi: oklch(0.62 0.09 65);
-  --color-rm-brown-soft: oklch(0.48 0.07 65 / 0.14);
-  --color-rm-brown-deep: oklch(0.32 0.05 60);
+  /* Text — cream parade white */
+  --color-text: oklch(0.97 0.020 85);
+  --color-text-dim: oklch(0.78 0.022 85);
+  --color-text-mute: oklch(0.55 0.025 95);
 
-  /* Royal Marines red (thin red line) — test markers, danger */
-  --color-rm-red: oklch(0.54 0.22 25);
-  --color-rm-red-hi: oklch(0.64 0.22 25);
-  --color-rm-red-soft: oklch(0.54 0.22 25 / 0.14);
+  /* RM gold — lion, anchor, scroll borders, latitude lines */
+  --color-rm-gold: oklch(0.80 0.165 85);
+  --color-rm-gold-hi: oklch(0.88 0.160 90);
+  --color-rm-gold-deep: oklch(0.66 0.165 80);
+  --color-rm-gold-soft: oklch(0.80 0.165 85 / 0.14);
 
-  /* Legacy aliases (kept for unchanged callers) */
-  --color-gold: var(--color-rm-white);
-  --color-gold-hi: var(--color-rm-white-hi);
-  --color-gold-soft: var(--color-rm-white-soft);
+  /* Laurel green — wreath, accents (darker than field) */
+  --color-rm-green: oklch(0.35 0.080 145);
+  --color-rm-green-hi: oklch(0.50 0.110 145);
+  --color-rm-green-soft: oklch(0.35 0.080 145 / 0.14);
+
+  /* Globe blue — ocean, "Per Mare" maritime */
+  --color-rm-blue: oklch(0.45 0.130 240);
+  --color-rm-blue-hi: oklch(0.62 0.150 235);
+  --color-rm-blue-soft: oklch(0.45 0.130 240 / 0.14);
+
+  /* Scroll red — "Per Mare Per Terram" + "Gibraltar" ribbons */
+  --color-rm-red: oklch(0.54 0.220 25);
+  --color-rm-red-hi: oklch(0.64 0.220 25);
+  --color-rm-red-soft: oklch(0.54 0.220 25 / 0.16);
+
+  /* Parade white — scroll-text colour, primary text emphasis */
+  --color-rm-white: oklch(0.97 0.020 85);
+  --color-rm-white-hi: oklch(0.99 0.010 85);
+  --color-rm-white-soft: oklch(0.97 0.020 85 / 0.12);
+
+  /* Primary accent = gold (the heraldic feature) */
+  --color-accent: var(--color-rm-gold);
+  --color-accent-hi: var(--color-rm-gold-hi);
+  --color-accent-soft: var(--color-rm-gold-soft);
+  --color-accent-ink: oklch(0.18 0.04 80);
+
+  /* Legacy aliases (deprecated brown — collapse to laurel-green for old callers) */
+  --color-rm-brown: var(--color-rm-gold-deep);
+  --color-rm-brown-hi: var(--color-rm-gold);
+  --color-rm-brown-soft: var(--color-rm-gold-soft);
+  --color-rm-brown-deep: oklch(0.30 0.08 100);
+
+  --color-gold: var(--color-rm-gold);
+  --color-gold-hi: var(--color-rm-gold-hi);
+  --color-gold-soft: var(--color-rm-gold-soft);
   --color-red: var(--color-rm-red);
   --color-red-hi: var(--color-rm-red-hi);
   --color-red-soft: var(--color-rm-red-soft);
 
-  /* Done state */
-  --color-done: var(--color-rm-green);
+  /* Semantic shortcuts */
+  --color-done: var(--color-rm-green-hi);
   --color-danger: var(--color-rm-red);
+  --color-water: var(--color-rm-blue);
 
   /* ── Easings (Emil's stronger curves) ── */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -101,17 +116,17 @@
   --radius-xl: 32px;
   --radius-pill: 999px;
 
-  /* ── Shadows (layered, RM-green hover glow with brown undertone) ── */
+  /* ── Shadows (layered, RM-gold hover glow on olive field) ── */
   --shadow-card:
-    inset 0 1px 0 oklch(0.95 0.008 85 / 0.10),
-    0 0 0 1px oklch(0.48 0.07 65 / 0.06),
-    0 24px 64px oklch(0 0 0 / 0.65),
-    0 6px 20px oklch(0 0 0 / 0.4);
+    inset 0 1px 0 oklch(0.97 0.020 85 / 0.10),
+    0 0 0 1px oklch(0.80 0.165 85 / 0.06),
+    0 24px 64px oklch(0.10 0.03 130 / 0.65),
+    0 6px 20px oklch(0.06 0.02 130 / 0.45);
   --shadow-card-hover:
-    inset 0 1px 0 oklch(0.95 0.008 85 / 0.14),
-    0 0 0 1px oklch(0.55 0.13 148 / 0.32),
-    0 32px 80px oklch(0 0 0 / 0.7),
-    0 0 40px oklch(0.55 0.13 148 / 0.12);
+    inset 0 1px 0 oklch(0.97 0.020 85 / 0.16),
+    0 0 0 1px oklch(0.80 0.165 85 / 0.36),
+    0 32px 80px oklch(0.06 0.02 130 / 0.7),
+    0 0 40px oklch(0.80 0.165 85 / 0.14);
   --shadow-1:
     inset 0 1px 0 oklch(1 0 0 / 0.05),
     0 1px 2px oklch(0 0 0 / 0.4);
@@ -145,18 +160,29 @@
   --text-hero: 6rem;
 }
 
-/* Ensure custom RM-brown tokens emit as CSS vars regardless of Tailwind v4 utility-prune */
+/* Belt-and-braces: explicit :root emit so Tailwind v4 utility-prune
+   never strips heraldry tokens (gold/green/blue/red/white) */
 :root {
-  --color-rm-brown: oklch(0.48 0.07 65);
-  --color-rm-brown-hi: oklch(0.62 0.09 65);
-  --color-rm-brown-soft: oklch(0.48 0.07 65 / 0.14);
-  --color-rm-brown-deep: oklch(0.32 0.05 60);
-  --color-rm-white: oklch(0.95 0.008 85);
-  --color-rm-white-hi: oklch(0.99 0.004 85);
-  --color-rm-white-soft: oklch(0.95 0.008 85 / 0.10);
-  --color-rm-red: oklch(0.54 0.22 25);
-  --color-rm-red-hi: oklch(0.64 0.22 25);
-  --color-rm-red-soft: oklch(0.54 0.22 25 / 0.14);
+  --color-rm-gold: oklch(0.80 0.165 85);
+  --color-rm-gold-hi: oklch(0.88 0.160 90);
+  --color-rm-gold-deep: oklch(0.66 0.165 80);
+  --color-rm-gold-soft: oklch(0.80 0.165 85 / 0.14);
+
+  --color-rm-green: oklch(0.35 0.080 145);
+  --color-rm-green-hi: oklch(0.50 0.110 145);
+  --color-rm-green-soft: oklch(0.35 0.080 145 / 0.14);
+
+  --color-rm-blue: oklch(0.45 0.130 240);
+  --color-rm-blue-hi: oklch(0.62 0.150 235);
+  --color-rm-blue-soft: oklch(0.45 0.130 240 / 0.14);
+
+  --color-rm-red: oklch(0.54 0.220 25);
+  --color-rm-red-hi: oklch(0.64 0.220 25);
+  --color-rm-red-soft: oklch(0.54 0.220 25 / 0.16);
+
+  --color-rm-white: oklch(0.97 0.020 85);
+  --color-rm-white-hi: oklch(0.99 0.010 85);
+  --color-rm-white-soft: oklch(0.97 0.020 85 / 0.12);
 }
 
 * , *::before, *::after { box-sizing: border-box; }
@@ -193,17 +219,17 @@ body::before {
 }
 
 ::selection {
-  background: var(--color-rm-green-soft);
+  background: var(--color-rm-gold-soft);
   color: var(--color-rm-white-hi);
 }
 
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-rm-brown-soft);
+  background: var(--color-rm-gold-soft);
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-rm-brown-hi); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-rm-gold); }
 
 @media (display-mode: standalone) {
   body {
@@ -238,20 +264,15 @@ h1 {
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-rm-white);
+  color: var(--color-rm-gold);
 }
 
-.eyebrow-brown {
-  color: var(--color-rm-brown-hi);
-}
-
-.eyebrow-green {
-  color: var(--color-rm-green-hi);
-}
-
-.eyebrow-red {
-  color: var(--color-rm-red-hi);
-}
+.eyebrow-white { color: var(--color-rm-white); }
+.eyebrow-gold  { color: var(--color-rm-gold); }
+.eyebrow-green { color: var(--color-rm-green-hi); }
+.eyebrow-blue  { color: var(--color-rm-blue-hi); }
+.eyebrow-red   { color: var(--color-rm-red-hi); }
+.eyebrow-brown { color: var(--color-rm-gold-deep); } /* legacy */
 
 .label-quiet {
   font-family: var(--font-mono);
@@ -339,15 +360,15 @@ h1 {
 
 @media (hover: hover) and (pointer: fine) {
   .tile-interactive:hover {
-    border-color: oklch(0.55 0.13 150 / 0.38);
+    border-color: oklch(0.80 0.165 85 / 0.42);
     box-shadow: var(--shadow-card-hover);
   }
   .tile-tilt:hover {
     box-shadow:
-      inset 0 1px 0 oklch(1 0 0 / 0.14),
-      0 0 0 1px oklch(0.55 0.13 150 / 0.34),
-      0 36px 90px oklch(0 0 0 / 0.72),
-      0 0 60px oklch(0.55 0.13 150 / 0.14);
+      inset 0 1px 0 oklch(0.97 0.020 85 / 0.18),
+      0 0 0 1px oklch(0.80 0.165 85 / 0.42),
+      0 36px 90px oklch(0.06 0.02 130 / 0.72),
+      0 0 60px oklch(0.80 0.165 85 / 0.18);
   }
 }
 
@@ -365,13 +386,18 @@ h1 {
 }
 
 .tile-done {
-  background: color-mix(in oklch, var(--color-rm-green) 18%, var(--color-bg2));
-  border-color: color-mix(in oklch, var(--color-rm-green) 55%, var(--color-border));
+  background: color-mix(in oklch, var(--color-rm-green-hi) 22%, var(--color-bg2));
+  border-color: color-mix(in oklch, var(--color-rm-green-hi) 60%, var(--color-border));
 }
 
 .tile-accent {
-  border-color: color-mix(in oklch, var(--color-red) 50%, var(--color-border));
-  background: color-mix(in oklch, var(--color-red) 6%, var(--color-bg2));
+  border-color: color-mix(in oklch, var(--color-rm-red) 55%, var(--color-border));
+  background: color-mix(in oklch, var(--color-rm-red) 8%, var(--color-bg2));
+}
+
+.tile-water {
+  border-color: color-mix(in oklch, var(--color-rm-blue) 45%, var(--color-border));
+  background: color-mix(in oklch, var(--color-rm-blue) 8%, var(--color-bg2));
 }
 
 .tile-rest {
@@ -407,7 +433,7 @@ h1 {
 
 @media (hover: hover) and (pointer: fine) {
   .tile-interactive:hover .bg-num {
-    color: oklch(0.48 0.07 65 / 0.07);
+    color: oklch(0.80 0.165 85 / 0.09);
     transform: translateY(-4px);
   }
 }
@@ -440,10 +466,11 @@ h1 {
 }
 
 .btn-primary {
-  background: var(--color-accent);
+  background: var(--color-rm-gold);
   color: var(--color-accent-ink);
+  font-weight: 700;
 }
-.btn-primary:hover { background: var(--color-accent-hi); }
+.btn-primary:hover { background: var(--color-rm-gold-hi); }
 
 .btn-secondary {
   background: transparent;
@@ -466,10 +493,10 @@ h1 {
 }
 
 .btn-done {
-  background: var(--color-rm-green);
-  color: var(--color-text);
+  background: var(--color-rm-green-hi);
+  color: var(--color-rm-white-hi);
 }
-.btn-done:hover { background: var(--color-rm-green-hi); }
+.btn-done:hover { background: var(--color-rm-green); }
 
 .btn-danger {
   background: transparent;
@@ -576,14 +603,14 @@ h1 {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-rm-brown-hi) 15%, var(--color-rm-green-hi) 50%, var(--color-rm-red-hi) 85%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--color-rm-green-hi) 12%, var(--color-rm-gold) 50%, var(--color-rm-red-hi) 88%, transparent 100%);
   transform-origin: left center;
   transform: scaleX(0);
   z-index: 100;
   pointer-events: none;
   will-change: transform;
   transition: transform 80ms linear;
-  box-shadow: 0 0 12px var(--color-rm-green-soft);
+  box-shadow: 0 0 12px var(--color-rm-gold-soft);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -609,10 +636,10 @@ h1 {
   position: absolute;
   inset: -25%;
   background:
-    radial-gradient(ellipse 55% 45% at 30% 28%, oklch(0.40 0.10 148 / 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 78% 62%, oklch(0.48 0.07 65 / 0.16) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 50% 95%, oklch(0.54 0.22 25 / 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 35% at 12% 80%, oklch(0.95 0.008 85 / 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 55% 45% at 30% 28%, oklch(0.80 0.165 85 / 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 78% 62%, oklch(0.45 0.130 240 / 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 95%, oklch(0.35 0.080 145 / 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 35% at 12% 80%, oklch(0.54 0.220 25 / 0.08) 0%, transparent 60%);
   filter: blur(40px);
   animation: aurora-rotate 90s linear infinite;
   transform-origin: 50% 50%;
@@ -630,8 +657,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 45% 38% at 65% 20%, oklch(0.40 0.10 148 / 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 42% at 22% 50%, oklch(0.48 0.07 65 / 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 45% 38% at 65% 20%, oklch(0.80 0.165 85 / 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 42% at 22% 50%, oklch(0.45 0.130 240 / 0.10) 0%, transparent 60%);
   filter: blur(60px);
   animation: aurora-counter 130s linear infinite;
   transform-origin: 50% 50%;
@@ -653,31 +680,31 @@ h1 {
 }
 .orb-1 {
   width: 38vmin; height: 38vmin;
-  background: radial-gradient(circle, oklch(0.40 0.10 148 / 0.50) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.80 0.165 85 / 0.34) 0%, transparent 70%);
   top: 8%; left: -8%;
   animation: drift-1 72s ease-in-out infinite;
 }
 .orb-2 {
   width: 32vmin; height: 32vmin;
-  background: radial-gradient(circle, oklch(0.48 0.07 65 / 0.36) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.45 0.130 240 / 0.32) 0%, transparent 70%);
   top: 55%; left: 65%;
   animation: drift-2 88s ease-in-out infinite;
 }
 .orb-3 {
   width: 26vmin; height: 26vmin;
-  background: radial-gradient(circle, oklch(0.35 0.09 148 / 0.50) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.35 0.080 145 / 0.42) 0%, transparent 70%);
   top: 70%; left: 8%;
   animation: drift-3 96s ease-in-out infinite;
 }
 .orb-4 {
   width: 22vmin; height: 22vmin;
-  background: radial-gradient(circle, oklch(0.54 0.22 25 / 0.16) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.54 0.220 25 / 0.16) 0%, transparent 70%);
   top: 22%; left: 78%;
   animation: drift-4 64s ease-in-out infinite;
 }
 .orb-5 {
   width: 18vmin; height: 18vmin;
-  background: radial-gradient(circle, oklch(0.95 0.008 85 / 0.10) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.97 0.020 85 / 0.08) 0%, transparent 70%);
   top: 88%; left: 42%;
   animation: drift-5 80s ease-in-out infinite;
 }
@@ -710,8 +737,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 100% 80% at 50% 50%, transparent 40%, oklch(0.13 0.008 145 / 0.55) 100%),
-    linear-gradient(180deg, oklch(0.13 0.008 145 / 0.25) 0%, transparent 30%, transparent 70%, oklch(0.13 0.008 145 / 0.4) 100%);
+    radial-gradient(ellipse 100% 80% at 50% 50%, transparent 40%, oklch(0.16 0.040 130 / 0.55) 100%),
+    linear-gradient(180deg, oklch(0.16 0.040 130 / 0.25) 0%, transparent 30%, transparent 70%, oklch(0.16 0.040 130 / 0.4) 100%);
 }
 .cinema-grid {
   position: absolute;
@@ -880,7 +907,7 @@ button, [role="button"], a {
   transform: translateX(-2px);
 }
 
-/* Decorative corner brackets on hero card — RM brown tactical webbing */
+/* Decorative corner brackets on hero card — RM gold (cap-badge metalwork) */
 .corner-brackets {
   position: relative;
 }
@@ -891,8 +918,8 @@ button, [role="button"], a {
   position: absolute;
   width: 16px;
   height: 16px;
-  border: 1.5px solid var(--color-rm-brown-hi);
-  opacity: 0.55;
+  border: 1.5px solid var(--color-rm-gold);
+  opacity: 0.65;
   pointer-events: none;
 }
 
