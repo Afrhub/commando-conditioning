@@ -42,7 +42,11 @@ npm run preview   # serve dist/
 
 ## Deploy
 
-Static — push `dist/` to Cloudflare Pages / Netlify / Vercel. No backend required.
+Static — push `dist/` to any static host. No backend required.
+
+**Live (GitHub Pages):** https://afrhub.github.io/commando-conditioning/
+
+Auto-deploys on push to `main` via `.github/workflows/deploy.yml`.
 
 ## Roadmap (v2)
 
