@@ -9,3 +9,6 @@ dist-ssr
 !.env.example
 *.tsbuildinfo
 
+
+# Local Netlify folder
+.netlify

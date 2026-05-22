@@ -4,9 +4,13 @@ import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig(({ mode }) => ({
-  // Repo subpath on GitHub Pages: https://afrhub.github.io/commando-conditioning/
-  // Local dev still serves at / (Vite's base only affects build assets + dev links).
-  base: mode === "production" ? "/commando-conditioning/" : "/",
+  // Base path strategy:
+  // - GitHub Pages build (GITHUB_PAGES=true env): /commando-conditioning/
+  // - Netlify / Cloudflare Pages / direct domain (default): /
+  // - Local dev (mode !== production): /
+  base: mode === "production" && process.env.GITHUB_PAGES === "true"
+    ? "/commando-conditioning/"
+    : "/",
   plugins: [
     react(),
     tailwindcss(),
