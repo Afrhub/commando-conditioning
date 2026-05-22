@@ -73,7 +73,7 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
             }}
           />
           <div className="absolute right-0 top-0 -translate-y-full font-mono text-[10px] uppercase tracking-widest mb-1" style={{ color: "var(--color-text-mute)" }}>
-            <span style={{ color: "var(--color-gold)" }}>{pct}</span>% logged
+            <span style={{ color: "var(--color-rm-brown-hi)" }}>{pct}</span>% logged
           </div>
         </div>
       </header>

@@ -8,46 +8,63 @@
    ════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Surfaces (warm-tinted near-black) ── */
-  --color-bg: oklch(0.13 0.008 145);
-  --color-bg2: oklch(0.15 0.009 145);
-  --color-bg3: oklch(0.17 0.010 145);
-  --color-surface: oklch(0.19 0.010 145);
-  --color-surface-hi: oklch(0.23 0.012 145);
+  /* ── Surfaces (warm brown-tinted near-black) ── */
+  --color-bg: oklch(0.13 0.012 70);
+  --color-bg2: oklch(0.16 0.013 65);
+  --color-bg3: oklch(0.18 0.014 65);
+  --color-surface: oklch(0.19 0.014 65);
+  --color-surface-hi: oklch(0.23 0.016 65);
   --color-glass: oklch(1 0 0 / 0.028);
   --color-glass-hi: oklch(1 0 0 / 0.05);
-  --color-border: oklch(1 0 0 / 0.075);
-  --color-border-bold: oklch(1 0 0 / 0.14);
-  --color-hairline: oklch(1 0 0 / 0.08);
+  --color-border: oklch(1 0 0 / 0.085);
+  --color-border-bold: oklch(1 0 0 / 0.16);
+  --color-hairline: oklch(1 0 0 / 0.09);
 
-  /* ── Text ── */
-  --color-text: oklch(0.96 0.005 145);
-  --color-text-dim: oklch(0.72 0.008 145);
-  --color-text-mute: oklch(0.48 0.008 145);
+  /* ── Text (parade white) ── */
+  --color-text: oklch(0.97 0.005 85);
+  --color-text-dim: oklch(0.74 0.008 75);
+  --color-text-mute: oklch(0.50 0.010 70);
 
-  /* ── Royal Marines commando palette ── */
-  /* Cap-badge green — primary brand accent */
-  --color-rm-green: oklch(0.42 0.10 150);
-  --color-rm-green-hi: oklch(0.55 0.13 150);
-  --color-rm-green-soft: oklch(0.42 0.10 150 / 0.10);
-  --color-accent: oklch(0.55 0.13 150);
-  --color-accent-hi: oklch(0.65 0.14 150);
-  --color-accent-soft: oklch(0.55 0.13 150 / 0.10);
-  --color-accent-ink: oklch(0.99 0.003 145);
+  /* ──────────────────────────────────────────────
+     ROYAL MARINES OFFICIAL SCHEME — green/white/brown/red
+     ────────────────────────────────────────────── */
 
-  /* Cap-badge gold — decorative trace */
-  --color-gold: oklch(0.78 0.13 80);
-  --color-gold-hi: oklch(0.85 0.13 80);
-  --color-gold-soft: oklch(0.78 0.13 80 / 0.08);
+  /* Commando green — beret + cap badge */
+  --color-rm-green: oklch(0.40 0.10 148);
+  --color-rm-green-hi: oklch(0.55 0.13 148);
+  --color-rm-green-soft: oklch(0.40 0.10 148 / 0.12);
+  --color-accent: oklch(0.55 0.13 148);
+  --color-accent-hi: oklch(0.65 0.14 148);
+  --color-accent-soft: oklch(0.55 0.13 148 / 0.12);
+  --color-accent-ink: oklch(0.98 0.003 85);
+
+  /* Parade white — facing edges, gloves, belt webbing */
+  --color-rm-white: oklch(0.95 0.008 85);
+  --color-rm-white-hi: oklch(0.99 0.004 85);
+  --color-rm-white-soft: oklch(0.95 0.008 85 / 0.10);
+
+  /* Commando brown (Lovat / combat khaki) — kit, leather, webbing */
+  --color-rm-brown: oklch(0.48 0.07 65);
+  --color-rm-brown-hi: oklch(0.62 0.09 65);
+  --color-rm-brown-soft: oklch(0.48 0.07 65 / 0.14);
+  --color-rm-brown-deep: oklch(0.32 0.05 60);
 
   /* Royal Marines red (thin red line) — test markers, danger */
-  --color-red: oklch(0.55 0.20 25);
-  --color-red-hi: oklch(0.65 0.21 25);
-  --color-red-soft: oklch(0.55 0.20 25 / 0.10);
+  --color-rm-red: oklch(0.54 0.22 25);
+  --color-rm-red-hi: oklch(0.64 0.22 25);
+  --color-rm-red-soft: oklch(0.54 0.22 25 / 0.14);
+
+  /* Legacy aliases (kept for unchanged callers) */
+  --color-gold: var(--color-rm-white);
+  --color-gold-hi: var(--color-rm-white-hi);
+  --color-gold-soft: var(--color-rm-white-soft);
+  --color-red: var(--color-rm-red);
+  --color-red-hi: var(--color-rm-red-hi);
+  --color-red-soft: var(--color-rm-red-soft);
 
   /* Done state */
   --color-done: var(--color-rm-green);
-  --color-danger: var(--color-red);
+  --color-danger: var(--color-rm-red);
 
   /* ── Easings (Emil's stronger curves) ── */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -84,17 +101,17 @@
   --radius-xl: 32px;
   --radius-pill: 999px;
 
-  /* ── Shadows (layered, RM-green hover glow) ── */
+  /* ── Shadows (layered, RM-green hover glow with brown undertone) ── */
   --shadow-card:
-    inset 0 1px 0 oklch(1 0 0 / 0.09),
-    0 0 0 1px oklch(1 0 0 / 0.035),
+    inset 0 1px 0 oklch(0.95 0.008 85 / 0.10),
+    0 0 0 1px oklch(0.48 0.07 65 / 0.06),
     0 24px 64px oklch(0 0 0 / 0.65),
     0 6px 20px oklch(0 0 0 / 0.4);
   --shadow-card-hover:
-    inset 0 1px 0 oklch(1 0 0 / 0.12),
-    0 0 0 1px oklch(0.55 0.13 150 / 0.30),
+    inset 0 1px 0 oklch(0.95 0.008 85 / 0.14),
+    0 0 0 1px oklch(0.55 0.13 148 / 0.32),
     0 32px 80px oklch(0 0 0 / 0.7),
-    0 0 40px oklch(0.55 0.13 150 / 0.10);
+    0 0 40px oklch(0.55 0.13 148 / 0.12);
   --shadow-1:
     inset 0 1px 0 oklch(1 0 0 / 0.05),
     0 1px 2px oklch(0 0 0 / 0.4);
@@ -126,6 +143,20 @@
   --text-3xl: 3rem;
   --text-display: 4.5rem;
   --text-hero: 6rem;
+}
+
+/* Ensure custom RM-brown tokens emit as CSS vars regardless of Tailwind v4 utility-prune */
+:root {
+  --color-rm-brown: oklch(0.48 0.07 65);
+  --color-rm-brown-hi: oklch(0.62 0.09 65);
+  --color-rm-brown-soft: oklch(0.48 0.07 65 / 0.14);
+  --color-rm-brown-deep: oklch(0.32 0.05 60);
+  --color-rm-white: oklch(0.95 0.008 85);
+  --color-rm-white-hi: oklch(0.99 0.004 85);
+  --color-rm-white-soft: oklch(0.95 0.008 85 / 0.10);
+  --color-rm-red: oklch(0.54 0.22 25);
+  --color-rm-red-hi: oklch(0.64 0.22 25);
+  --color-rm-red-soft: oklch(0.54 0.22 25 / 0.14);
 }
 
 * , *::before, *::after { box-sizing: border-box; }
@@ -163,16 +194,16 @@ body::before {
 
 ::selection {
   background: var(--color-rm-green-soft);
-  color: var(--color-text);
+  color: var(--color-rm-white-hi);
 }
 
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-rm-green-soft);
+  background: var(--color-rm-brown-soft);
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-rm-green); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-rm-brown-hi); }
 
 @media (display-mode: standalone) {
   body {
@@ -207,7 +238,19 @@ h1 {
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-rm-white);
+}
+
+.eyebrow-brown {
+  color: var(--color-rm-brown-hi);
+}
+
+.eyebrow-green {
+  color: var(--color-rm-green-hi);
+}
+
+.eyebrow-red {
+  color: var(--color-rm-red-hi);
 }
 
 .label-quiet {
@@ -364,7 +407,7 @@ h1 {
 
 @media (hover: hover) and (pointer: fine) {
   .tile-interactive:hover .bg-num {
-    color: oklch(0.55 0.13 150 / 0.06);
+    color: oklch(0.48 0.07 65 / 0.07);
     transform: translateY(-4px);
   }
 }
@@ -533,7 +576,7 @@ h1 {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-rm-green) 30%, var(--color-rm-green-hi) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--color-rm-brown-hi) 15%, var(--color-rm-green-hi) 50%, var(--color-rm-red-hi) 85%, transparent 100%);
   transform-origin: left center;
   transform: scaleX(0);
   z-index: 100;
@@ -566,10 +609,10 @@ h1 {
   position: absolute;
   inset: -25%;
   background:
-    radial-gradient(ellipse 55% 45% at 30% 28%, oklch(0.42 0.10 150 / 0.20) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 78% 62%, oklch(0.35 0.09 150 / 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 50% 95%, oklch(0.55 0.13 150 / 0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 35% at 12% 80%, oklch(0.78 0.13 80 / 0.05) 0%, transparent 60%);
+    radial-gradient(ellipse 55% 45% at 30% 28%, oklch(0.40 0.10 148 / 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 78% 62%, oklch(0.48 0.07 65 / 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 95%, oklch(0.54 0.22 25 / 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 35% at 12% 80%, oklch(0.95 0.008 85 / 0.04) 0%, transparent 60%);
   filter: blur(40px);
   animation: aurora-rotate 90s linear infinite;
   transform-origin: 50% 50%;
@@ -587,8 +630,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 45% 38% at 65% 20%, oklch(0.42 0.10 150 / 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 42% at 22% 50%, oklch(0.78 0.13 80 / 0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 45% 38% at 65% 20%, oklch(0.40 0.10 148 / 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 42% at 22% 50%, oklch(0.48 0.07 65 / 0.08) 0%, transparent 60%);
   filter: blur(60px);
   animation: aurora-counter 130s linear infinite;
   transform-origin: 50% 50%;
@@ -610,31 +653,31 @@ h1 {
 }
 .orb-1 {
   width: 38vmin; height: 38vmin;
-  background: radial-gradient(circle, oklch(0.55 0.13 150 / 0.45) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.40 0.10 148 / 0.50) 0%, transparent 70%);
   top: 8%; left: -8%;
   animation: drift-1 72s ease-in-out infinite;
 }
 .orb-2 {
   width: 32vmin; height: 32vmin;
-  background: radial-gradient(circle, oklch(0.78 0.13 80 / 0.30) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.48 0.07 65 / 0.36) 0%, transparent 70%);
   top: 55%; left: 65%;
   animation: drift-2 88s ease-in-out infinite;
 }
 .orb-3 {
   width: 26vmin; height: 26vmin;
-  background: radial-gradient(circle, oklch(0.35 0.09 150 / 0.45) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.35 0.09 148 / 0.50) 0%, transparent 70%);
   top: 70%; left: 8%;
   animation: drift-3 96s ease-in-out infinite;
 }
 .orb-4 {
   width: 22vmin; height: 22vmin;
-  background: radial-gradient(circle, oklch(0.42 0.10 150 / 0.30) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.54 0.22 25 / 0.16) 0%, transparent 70%);
   top: 22%; left: 78%;
   animation: drift-4 64s ease-in-out infinite;
 }
 .orb-5 {
   width: 18vmin; height: 18vmin;
-  background: radial-gradient(circle, oklch(0.55 0.20 25 / 0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, oklch(0.95 0.008 85 / 0.10) 0%, transparent 70%);
   top: 88%; left: 42%;
   animation: drift-5 80s ease-in-out infinite;
 }
@@ -837,7 +880,7 @@ button, [role="button"], a {
   transform: translateX(-2px);
 }
 
-/* Decorative corner brackets on hero card */
+/* Decorative corner brackets on hero card — RM brown tactical webbing */
 .corner-brackets {
   position: relative;
 }
@@ -846,10 +889,11 @@ button, [role="button"], a {
 .corner-brackets::after {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 1.5px solid var(--color-gold);
-  opacity: 0.4;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--color-rm-brown-hi);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .corner-brackets::before {

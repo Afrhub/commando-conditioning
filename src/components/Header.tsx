@@ -22,7 +22,7 @@ export function Header({ onHome, onBleep, onReset, hasProgramme }: Props) {
             />
           </span>
           <span className="flex flex-col items-start leading-none">
-            <span className="font-mono text-[9px] uppercase tracking-[0.22em]" style={{ color: "var(--color-gold)" }}>Royal Marines</span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.22em]" style={{ color: "var(--color-rm-brown-hi)" }}>Royal Marines</span>
             <span
               className="font-display mt-1.5 text-[15px]"
               style={{
