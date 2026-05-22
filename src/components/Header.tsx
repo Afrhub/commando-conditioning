@@ -22,8 +22,17 @@ export function Header({ onHome, onBleep, onReset, hasProgramme }: Props) {
             />
           </span>
           <span className="flex flex-col items-start leading-none">
-            <span className="eyebrow" style={{ fontSize: "9px", letterSpacing: "0.24em" }}>Royal Marines</span>
-            <span className="font-display font-extrabold tracking-[-0.02em] text-[15px] mt-1">COMMANDO CONDITIONING</span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.22em]" style={{ color: "var(--color-gold)" }}>Royal Marines</span>
+            <span
+              className="font-display mt-1.5 text-[15px]"
+              style={{
+                fontVariationSettings: '"wdth" 80',
+                fontWeight: 900,
+                letterSpacing: "-0.005em",
+              }}
+            >
+              COMMANDO CONDITIONING
+            </span>
           </span>
         </button>
         <div className="flex-1" />

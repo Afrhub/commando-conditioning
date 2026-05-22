@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from "react";
 import { Programme, Day } from "../lib/programme";
 import { dayKey } from "../lib/storage";
+import { useCounter } from "../lib/useCounter";
 
 interface Props {
   programme: Programme;
@@ -12,6 +14,8 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
   const totalDays = programme.days.filter(d => d.sessions.length > 0).length;
   const doneDays = programme.days.filter(d => completed[dayKey(d.week, d.dayIdx)]).length;
   const pct = totalDays === 0 ? 0 : Math.round((doneDays / totalDays) * 100);
+  const weeksLeft = weeksRemaining(programme, completed);
+  const currentWeek = currentWeekFromCompleted(programme, completed);
 
   const weeks: Day[][] = [];
   for (let w = 1; w <= programme.weeks; w++) {
@@ -19,12 +23,29 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
   }
 
   return (
-    <div data-route="schedule" className="page-rise pt-10 pb-16">
-      <header className="mb-12">
+    <div data-route="schedule" className="page-rise pt-10 pb-16 relative">
+      <ScrollRail currentWeek={currentWeek} totalWeeks={programme.weeks} />
+
+      <header className="mb-14 relative">
+        {/* Diagonal printed ID stamp */}
+        <div className="absolute -top-2 right-0 font-mono text-[10px] uppercase tracking-widest opacity-50" style={{ color: "var(--color-text-mute)" }}>
+          ⁂ Brief · 01 / 12W
+        </div>
+
         <div className="flex items-baseline justify-between gap-6">
           <div>
-            <div className="eyebrow mb-4">Programme · {programme.weeks} weeks</div>
-            <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-extrabold tracking-[-0.045em] leading-[0.98] max-w-[14ch]">
+            <div className="eyebrow eyebrow-offset mb-5">PROGRAMME · {programme.weeks} WEEKS</div>
+            <h1
+              className="font-display"
+              style={{
+                fontSize: "clamp(2.75rem, 9vw, 6.5rem)",
+                lineHeight: 0.88,
+                letterSpacing: "-0.045em",
+                fontVariationSettings: '"wdth" 88',
+                fontWeight: 900,
+                maxWidth: "12ch",
+              }}
+            >
               The work,<br />
               <span style={{ color: "var(--color-text-mute)" }}>laid out.</span>
             </h1>
@@ -34,14 +55,14 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
           </button>
         </div>
 
-        {/* Hero stat row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-12">
-          <HeroStat label="Sessions" current={doneDays} total={totalDays} />
-          <HeroStat label="Progress" current={pct} total={100} suffix="%" />
-          <HeroStat label="Weeks left" current={weeksRemaining(programme, completed)} total={programme.weeks} />
+        {/* Hero stat row — oversized scoreboard numerals */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-14">
+          <HeroStat label="Sessions Done" current={doneDays} total={totalDays} />
+          <HeroStat label="Progress" current={pct} total={100} suffix="%" mega />
+          <HeroStat label="Weeks Remaining" current={weeksLeft} total={programme.weeks} />
         </div>
 
-        <div className="h-[2px] bg-[color:var(--color-hairline)] rounded-full mt-8 overflow-hidden">
+        <div className="h-[3px] bg-[color:var(--color-hairline)] rounded-full mt-10 overflow-hidden relative">
           <div
             className="h-full"
             style={{
@@ -51,10 +72,13 @@ export function Schedule({ programme, completed, onOpenDay, onEditIntake }: Prop
               transition: "width var(--dur-slow) var(--ease-out-strong)",
             }}
           />
+          <div className="absolute right-0 top-0 -translate-y-full font-mono text-[10px] uppercase tracking-widest mb-1" style={{ color: "var(--color-text-mute)" }}>
+            <span style={{ color: "var(--color-gold)" }}>{pct}</span>% logged
+          </div>
         </div>
       </header>
 
-      <div className="stagger space-y-12">
+      <div className="stagger space-y-14">
         {weeks.map((days, idx) => (
           <WeekRow
             key={idx}
@@ -79,15 +103,35 @@ function weeksRemaining(programme: Programme, completed: Record<string, boolean>
   return r;
 }
 
-function HeroStat({ label, current, total, suffix }: { label: string; current: number; total: number; suffix?: string }) {
+function currentWeekFromCompleted(programme: Programme, completed: Record<string, boolean>): number {
+  for (let w = 1; w <= programme.weeks; w++) {
+    const wDays = programme.days.filter(d => d.week === w && d.sessions.length > 0);
+    const wDone = wDays.every(d => completed[dayKey(d.week, d.dayIdx)]);
+    if (!wDone) return w;
+  }
+  return programme.weeks;
+}
+
+function HeroStat({ label, current, total, suffix, mega }: { label: string; current: number; total: number; suffix?: string; mega?: boolean }) {
+  const animated = useCounter(current, 900);
+  const rendered = Math.round(animated);
   return (
-    <div className="surface px-7 py-8 sm:py-10 relative overflow-hidden">
-      <div className="eyebrow mb-4">{label}</div>
+    <div className="surface corner-brackets px-7 py-10 sm:py-12 relative overflow-hidden">
+      <div className="eyebrow eyebrow-offset mb-4">{label}</div>
       <div className="flex items-baseline gap-2 relative z-10">
-        <span className="stat-num tnum text-[clamp(2.75rem,7vw,4.25rem)]">{current}{suffix ?? ""}</span>
-        <span className="text-[var(--color-text-mute)] text-sm tnum">/ {total}{suffix ?? ""}</span>
+        <span
+          className={mega ? "stat-num-mega" : "stat-num"}
+          style={{
+            fontSize: mega ? "clamp(4.5rem, 13vw, 7rem)" : "clamp(3.5rem, 10vw, 5.5rem)",
+          }}
+        >
+          {rendered}{suffix ?? ""}
+        </span>
+        <span className="font-mono text-[12px] tracking-widest uppercase tnum" style={{ color: "var(--color-text-mute)" }}>
+          / {total}{suffix ?? ""}
+        </span>
       </div>
-      <span className="bg-num" aria-hidden style={{ fontSize: "7rem", right: "0.25rem", bottom: "-1.25rem" }}>{total}</span>
+      <span className="bg-num" aria-hidden>{total}</span>
     </div>
   );
 }
@@ -106,12 +150,28 @@ function WeekRow({
   const allDone = days.filter(d => d.sessions.length > 0).every(d => completed[dayKey(d.week, d.dayIdx)]);
   return (
     <section>
-      <div className="flex items-baseline justify-between mb-4">
-        <div className="flex items-baseline gap-3">
-          <div className="eyebrow">Week</div>
-          <div className="stat-num text-[1.75rem] tnum">{week}</div>
+      <div className="flex items-baseline justify-between mb-5">
+        <div className="flex items-baseline gap-4">
+          <div className="eyebrow eyebrow-offset">WEEK</div>
+          <div
+            className="stat-num tnum"
+            style={{
+              fontSize: "2.5rem",
+              fontVariationSettings: '"wdth" 75',
+              color: "var(--color-text)",
+            }}
+          >
+            {String(week).padStart(2, "0")}
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--color-text-mute)" }}>
+            / {String(days.filter(d => d.sessions.length > 0).length).padStart(2, "0")} blocks
+          </div>
         </div>
-        {allDone && <div className="eyebrow" style={{ color: "var(--color-rm-green-hi)" }}>Complete</div>}
+        {allDone && (
+          <div className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--color-rm-green-hi)" }}>
+            ✓ Complete
+          </div>
+        )}
       </div>
       <div className="grid grid-cols-7 gap-2.5 sm:gap-3">
         {days.map(day => (
@@ -145,29 +205,27 @@ function DayCell({ day, done, onClick }: { day: Day; done: boolean; onClick: () 
       aria-label={`${day.label} week ${day.week}${isRest ? " rest" : isTest ? " test day" : ""}${done ? " complete" : ""}`}
     >
       <div className="flex items-start justify-between">
-        <div className="label-quiet" style={{ fontSize: 9 }}>{day.label}</div>
-        {isTest && !done && (
-          <span
-            className="block h-1.5 w-1.5 rounded-full"
-            style={{ background: "var(--color-red)" }}
-            aria-hidden
-          />
-        )}
+        <div
+          className="font-mono text-[10px] tracking-wider uppercase"
+          style={{ color: isTest ? "var(--color-red-hi)" : "var(--color-text-mute)" }}
+        >
+          {day.label}
+        </div>
         {done && (
-          <svg viewBox="0 0 16 16" className="h-3 w-3" style={{ color: "var(--color-rm-green-hi)" }} aria-hidden>
+          <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" style={{ color: "var(--color-rm-green-hi)" }} aria-hidden>
             <path d="M3 8l3 3 7-7" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         )}
       </div>
       <div className="text-left">
         {isRest ? (
-          <div className="text-[10px] font-mono tracking-wider uppercase" style={{ color: "var(--color-text-mute)" }}>Rest</div>
+          <div className="font-mono text-[10px] tracking-wider uppercase" style={{ color: "var(--color-text-mute)" }}>Rest</div>
         ) : isTest ? (
-          <div className="text-[10px] font-mono font-bold tracking-[0.18em] uppercase" style={{ color: "var(--color-red-hi)" }}>Test</div>
+          <span className="stamp">TEST</span>
         ) : (
           <div className="flex flex-wrap gap-x-1 gap-y-0.5 font-mono">
             {day.sessions.slice(0, 4).map((s, i) => (
-              <span key={i} className="text-[9px] font-semibold tracking-wider" style={{ color: "var(--color-text-dim)" }}>
+              <span key={i} className="text-[10px] font-bold tracking-wider" style={{ color: "var(--color-text-dim)" }}>
                 {disciplineGlyph(s.discipline)}
               </span>
             ))}
@@ -180,15 +238,37 @@ function DayCell({ day, done, onClick }: { day: Day; done: boolean; onClick: () 
 
 function disciplineGlyph(d: string): string {
   switch (d) {
-    case "press": return "Pr";
-    case "sit": return "St";
-    case "pull": return "Pu";
-    case "run-liss": return "R";
+    case "press": return "PR";
+    case "sit": return "ST";
+    case "pull": return "PU";
+    case "run-liss": return "RUN";
     case "run-hiit": return "HR";
-    case "swim": return "Sw";
+    case "swim": return "SW";
     case "sandc": return "S&C";
-    case "conditioning": return "Cd";
+    case "conditioning": return "CD";
     case "test": return "★";
     default: return "·";
   }
+}
+
+function ScrollRail({ currentWeek, totalWeeks }: { currentWeek: number; totalWeeks: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setVisible((window.scrollY || 0) > 200);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div ref={ref} className={`scroll-rail ${visible ? "is-visible" : ""}`} aria-hidden>
+      <span className="rail-label">WK</span>
+      <span className="rail-value tnum">{String(currentWeek).padStart(2, "0")}</span>
+      <span className="rail-label">/ OF {String(totalWeeks).padStart(2, "0")}</span>
+    </div>
+  );
 }

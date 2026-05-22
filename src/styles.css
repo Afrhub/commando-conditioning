@@ -107,12 +107,13 @@
     0 12px 32px oklch(0 0 0 / 0.55),
     0 4px 12px oklch(0 0 0 / 0.4);
 
-  /* ── Fonts ── */
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  /* ── Fonts (distinctive — no design-tool defaults) ── */
+  --font-display: "Anybody", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-numeral: "Big Shoulders Display", "Anybody", system-ui, sans-serif;
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+  --font-mono: "Special Elite", "JetBrains Mono", ui-monospace, monospace;
   --font-ui: var(--font-body);
-  --font-stencil: "Allerta Stencil", "Stencil Std", impact, sans-serif;
+  --font-stencil: "Anybody", "Allerta Stencil", "Stencil Std", impact, sans-serif;
 
   /* ── Type scale ── */
   --text-xs: 0.75rem;
@@ -185,9 +186,14 @@ body::before {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  font-variation-settings: "wdth" 95;
+  letter-spacing: -0.025em;
   color: var(--color-text);
+}
+
+h1 {
+  font-variation-settings: "wdth" 90;
 }
 
 .font-display { font-family: var(--font-display); }
@@ -197,18 +203,18 @@ h1, h2, h3, h4, h5, h6 {
 .eyebrow,
 .label-mute {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-gold);
 }
 
 .label-quiet {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-mute);
 }
@@ -219,10 +225,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .stat-num {
-  font-family: var(--font-display);
+  font-family: var(--font-numeral);
   font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.stat-num-mega {
+  font-family: var(--font-numeral);
+  font-weight: 900;
   letter-spacing: -0.04em;
-  line-height: 0.95;
+  line-height: 0.82;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
@@ -331,19 +346,20 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Big translucent watermark number — borrowed from module-card.bg-num */
+/* Big translucent watermark number */
 .bg-num {
   position: absolute;
   right: 0.5rem;
-  bottom: -0.6rem;
-  font-family: var(--font-display);
+  bottom: -0.8rem;
+  font-family: var(--font-numeral);
   font-weight: 900;
-  font-size: 5.5rem;
-  line-height: 1;
-  color: oklch(1 0 0 / 0.022);
+  font-size: 7rem;
+  line-height: 0.85;
+  color: oklch(1 0 0 / 0.024);
   pointer-events: none;
   user-select: none;
   transition: transform 1.4s var(--ease-out-strong), color 0.42s var(--ease-out-strong);
+  letter-spacing: -0.05em;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -733,3 +749,119 @@ button, [role="button"], a {
    ════════════════════════════════════════════════════════════ */
 .phase-work .stat-num { color: var(--color-rm-green-hi); }
 .phase-rest .stat-num { color: var(--color-gold); }
+
+/* ════════════════════════════════════════════════════════════
+   STAMPED TEST BADGE — looks rubber-stamped onto card
+   ════════════════════════════════════════════════════════════ */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-stencil);
+  font-weight: 900;
+  font-variation-settings: "wdth" 80;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  padding: 4px 8px;
+  border: 1.5px solid var(--color-red-hi);
+  color: var(--color-red-hi);
+  border-radius: 3px;
+  transform: rotate(-3deg);
+  position: relative;
+  opacity: 0.92;
+  background: oklch(0.55 0.20 25 / 0.06);
+}
+
+.stamp::before, .stamp::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(circle at 25% 30%, oklch(0 0 0 / 0.2) 0.5px, transparent 1.2px),
+                    radial-gradient(circle at 70% 60%, oklch(0 0 0 / 0.15) 0.5px, transparent 1.2px);
+  background-size: 3px 3px, 5px 5px;
+  mix-blend-mode: multiply;
+}
+
+/* Tilt every 3rd test cell slightly different for hand-stamped feel */
+.tile-accent:nth-of-type(3n)   .stamp { transform: rotate(-5deg); }
+.tile-accent:nth-of-type(3n+1) .stamp { transform: rotate(-1deg); }
+.tile-accent:nth-of-type(3n+2) .stamp { transform: rotate(-4deg); }
+
+/* ════════════════════════════════════════════════════════════
+   SCROLL RAIL — sticky side indicator "WK 04 / OF 12"
+   ════════════════════════════════════════════════════════════ */
+.scroll-rail {
+  position: fixed;
+  right: max(env(safe-area-inset-right), 1.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-mute);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out-strong);
+}
+
+.scroll-rail.is-visible { opacity: 1; }
+
+.scroll-rail .rail-label { color: var(--color-text-mute); }
+.scroll-rail .rail-value { color: var(--color-text); font-weight: 600; }
+
+@media (max-width: 900px) { .scroll-rail { display: none; } }
+
+/* ════════════════════════════════════════════════════════════
+   COUNTER ANIMATION — used by stat hooks
+   ════════════════════════════════════════════════════════════ */
+.counter-anim {
+  display: inline-block;
+  will-change: contents;
+}
+
+/* ════════════════════════════════════════════════════════════
+   ASYMMETRIC OFFSETS — break the perfect-grid feel
+   ════════════════════════════════════════════════════════════ */
+.eyebrow-offset {
+  display: inline-block;
+  transform: translateX(-2px);
+}
+
+/* Decorative corner brackets on hero card */
+.corner-brackets {
+  position: relative;
+}
+
+.corner-brackets::before,
+.corner-brackets::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--color-gold);
+  opacity: 0.4;
+}
+
+.corner-brackets::before {
+  top: 10px;
+  left: 10px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.corner-brackets::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: 0;
+  border-top: 0;
+}

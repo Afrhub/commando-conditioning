@@ -23,11 +23,24 @@ export function Session({ day, completed, onToggleComplete, onBack }: Props) {
         Schedule
       </button>
 
-      <header className="mb-12">
+      <header className="mb-12 relative">
+        <div className="absolute -top-2 right-0 font-mono text-[10px] uppercase tracking-widest opacity-50" style={{ color: "var(--color-text-mute)" }}>
+          ⁂ Day · WK{String(day.week).padStart(2, "0")} · {day.label.toUpperCase()}
+        </div>
         <div className="flex items-baseline justify-between gap-6 flex-wrap">
           <div>
-            <div className="eyebrow mb-4">Week {day.week} · {day.label}</div>
-            <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold tracking-[-0.045em] leading-[0.98] max-w-[16ch]">
+            <div className="eyebrow eyebrow-offset mb-5">WEEK {String(day.week).padStart(2, "0")} · {day.label.toUpperCase()}</div>
+            <h1
+              className="font-display"
+              style={{
+                fontSize: "clamp(2.5rem, 8vw, 5.5rem)",
+                lineHeight: 0.9,
+                letterSpacing: "-0.045em",
+                fontVariationSettings: '"wdth" 88',
+                fontWeight: 900,
+                maxWidth: "16ch",
+              }}
+            >
               {day.isTestDay ? "Self-test day" : day.sessions.length === 0 ? "Rest" : "Today's work"}
             </h1>
             {day.sessions.length > 0 && (

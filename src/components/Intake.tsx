@@ -34,9 +34,22 @@ export function Intake({ initial, onSubmit }: Props) {
 
   return (
     <form onSubmit={submit} data-route="intake" className="page-rise pt-10 pb-16">
-      <header className="mb-12">
-        <div className="eyebrow mb-4">Phase 0 · Baseline</div>
-        <h1 className="text-[clamp(2.25rem,7vw,4.5rem)] font-extrabold tracking-[-0.045em] leading-[0.98] max-w-[16ch]">
+      <header className="mb-12 relative">
+        <div className="absolute -top-2 right-0 font-mono text-[10px] uppercase tracking-widest opacity-50" style={{ color: "var(--color-text-mute)" }}>
+          ⁂ Form 0 · Intake
+        </div>
+        <div className="eyebrow eyebrow-offset mb-5">PHASE 0 · BASELINE</div>
+        <h1
+          className="font-display"
+          style={{
+            fontSize: "clamp(2.5rem, 8.5vw, 6rem)",
+            lineHeight: 0.88,
+            letterSpacing: "-0.045em",
+            fontVariationSettings: '"wdth" 88',
+            fontWeight: 900,
+            maxWidth: "14ch",
+          }}
+        >
           Where you stand,<br />
           <span style={{ color: "var(--color-text-mute)" }}>before the work begins.</span>
         </h1>

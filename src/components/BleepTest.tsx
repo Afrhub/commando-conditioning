@@ -124,9 +124,21 @@ export function BleepTest({ onResult, results, onBack }: Props) {
         Back
       </button>
 
-      <header className="mb-12">
-        <div className="eyebrow mb-4">Multi-stage fitness test</div>
-        <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-extrabold tracking-[-0.045em] leading-[0.98]">
+      <header className="mb-12 relative">
+        <div className="absolute -top-2 right-0 font-mono text-[10px] uppercase tracking-widest opacity-50" style={{ color: "var(--color-text-mute)" }}>
+          ⁂ Test · MSFT 20m
+        </div>
+        <div className="eyebrow eyebrow-offset mb-5">MULTI-STAGE FITNESS TEST</div>
+        <h1
+          className="font-display"
+          style={{
+            fontSize: "clamp(2.75rem, 9vw, 6.5rem)",
+            lineHeight: 0.88,
+            letterSpacing: "-0.045em",
+            fontVariationSettings: '"wdth" 88',
+            fontWeight: 900,
+          }}
+        >
           The bleep test.
         </h1>
         <p className="mt-5 text-[var(--color-text-dim)] max-w-[60ch] text-[15px] leading-relaxed">
