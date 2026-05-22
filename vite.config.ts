@@ -3,10 +3,10 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   // Repo subpath on GitHub Pages: https://afrhub.github.io/commando-conditioning/
-  // Local dev still serves at / (Vite's base only affects build assets + dev links to root).
-  base: process.env.GITHUB_ACTIONS ? "/commando-conditioning/" : "/",
+  // Local dev still serves at / (Vite's base only affects build assets + dev links).
+  base: mode === "production" ? "/commando-conditioning/" : "/",
   plugins: [
     react(),
     tailwindcss(),
@@ -31,4 +31,4 @@ export default defineConfig({
       },
     }),
   ],
-});
+}));
